@@ -30,8 +30,9 @@ const MovieDetailPage = ({ result }) => {
     style: 'currency',
     currency: 'USD',
     maximumFractionDigits: 0,
+    minimumFractionDigits: 0,
   });
-  const budget = formatter.format(result.budget);
+  const budget = formatter.format(result.budget) || 0;
 
   const index = result.videos.results.findIndex(
     (element) => element.type === 'Trailer'
