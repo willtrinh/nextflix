@@ -12,6 +12,7 @@ import {
 import ReactPlayer from 'react-player/lazy';
 
 const MovieDetailPage = ({ result }) => {
+  console.log(result);
   const BASE_URL = 'https://image.tmdb.org/t/p/original';
   const [isHovering, setIsHovering] = useState(false);
   const [showPlayer, setShowPlayer] = useState(false);
@@ -22,6 +23,9 @@ const MovieDetailPage = ({ result }) => {
   const releaseYear = result.release_date.slice(0, 4);
   const releaseMonth = result.release_date.slice(5, 7);
   const releaseDay = result.release_date.slice(8, 10);
+
+  const hours = Math.floor(result.runtime / 60);
+  const minutes = result.runtime % 60;
 
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -38,6 +42,11 @@ const MovieDetailPage = ({ result }) => {
     `${BASE_URL}${
       result.backdrop_path || result.poster_path || result.profile_path
     }` || `${BASE_URL}${result.poster_path}`;
+
+  if (result.backdrop_path === null && result.poster_path === null) {
+    const notFound = '/images/no-image-available.webp';
+    imageSource = notFound;
+  }
 
   return (
     <div>
@@ -98,14 +107,14 @@ const MovieDetailPage = ({ result }) => {
               </span>
             </div>
           </div>
-          <p className='text-xs md:text-sm font-bold flex items-center gap-2'>
+          <div className='text-xs md:text-sm font-bold flex items-center gap-2'>
             <CalendarIcon className='w-6 h-6' />
             Release date: {`${releaseMonth}/${releaseDay}/${releaseYear}`}
             <ClockIcon className='w-6 h-6' />
-            Run time: {Math.floor(result.runtime / 60)}h {result.runtime % 60}m
+            Run time: {hours !== 0 ? `${hours}h ${minutes}m` : `${minutes}m`}
             <CurrencyDollarIcon className='w-6 h-6' />
             Budget: {budget}
-          </p>
+          </div>
           <h2 className='font-semibold text-sm md:text-lg max-w-4xl border-b-2 pb-2 w-min'>
             Overview
           </h2>

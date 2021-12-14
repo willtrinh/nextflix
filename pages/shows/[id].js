@@ -17,6 +17,10 @@ const ShowDetailsPage = ({ result }) => {
   const releaseMonth = result.first_air_date.slice(5, 7);
   const releaseDay = result.first_air_date.slice(8, 10);
 
+  // const hours = Math.floor(result.runtime / 60);
+  const minutes =
+    result.episode_run_time % 60 || result.episode_run_time[0] % 60;
+
   const index = result.videos.results.findIndex(
     (element) => element.type === 'Trailer'
   );
@@ -85,13 +89,15 @@ const ShowDetailsPage = ({ result }) => {
               </span>
             </div>
           </div>
-          <p className='text-xs md:text-sm font-bold flex items-center gap-2'>
+          <div className='text-xs md:text-sm font-bold flex items-center gap-2'>
             <CalendarIcon className='w-6 h-6' />
             First air date: {`${releaseMonth}/${releaseDay}/${releaseYear}`}
-            <ClockIcon className='w-6 h-6' />
-            Run time:{' '}
-            {result.episode_run_time % 60 || result.episode_run_time[0] % 60}m
-          </p>
+            {!isNaN(minutes) && (
+              <p className='flex items-center'>
+                <ClockIcon className='w-6 h-6' /> Run time: {minutes}m
+              </p>
+            )}
+          </div>
           <h2 className='font-semibold text-sm md:text-lg max-w-4xl border-b-2 pb-2 w-min'>
             Overview
           </h2>

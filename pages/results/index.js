@@ -2,11 +2,11 @@ import Header from '../../components/Header';
 import { multiSearch } from '../../helpers/api-utils';
 import SearchResults from '../../components/SearchResults';
 
-const SearchPage = ({ results }) => {
+const SearchPage = ({ results, searchTerm }) => {
   return (
     <>
       <Header />
-      <SearchResults results={results} />
+      <SearchResults results={results} searchTerm={searchTerm} />
     </>
   );
 };
@@ -20,6 +20,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       results: searchData.results,
+      searchTerm: query,
     },
   };
 }

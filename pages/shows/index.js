@@ -37,7 +37,7 @@ const ShowsPage = ({ shows }) => {
           </p>
         }
       >
-        <SearchResults results={results} type='tv' />
+        <SearchResults results={results} type='show' />
       </InfiniteScroll>
     </>
   );

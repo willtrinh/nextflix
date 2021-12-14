@@ -22,7 +22,10 @@ const Search = () => {
   }
 
   return (
-    <form onSubmit={submitHandler}>
+    <form
+      className='flex justify-center items-center justify-items-center'
+      onSubmit={submitHandler}
+    >
       <span className='span'>
         <input
           type='text'
@@ -31,7 +34,7 @@ const Search = () => {
               ? 'Search for movies and tv series...'
               : 'Please enter something to search...'
           }
-          size={28}
+          size={30}
           className={
             !error
               ? 'bg-transparent outline-none font-semibold'

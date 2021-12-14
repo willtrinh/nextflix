@@ -8,7 +8,7 @@ const Header = () => {
   const router = useRouter();
 
   return (
-    <div className='sticky bg-home bg-cover shadow-2xl top-0 z-50 flex h-16 items-center px-10 md:px-12'>
+    <div className='sticky bg-home bg-cover shadow-2xl top-0 z-50 flex h-16 items-center px-10 md:px-6'>
       <Image
         src='/logo.png'
         alt='logo'
@@ -31,8 +31,8 @@ const Header = () => {
         <a className='header-link group' onClick={() => router.push('/shows')}>
           <Image
             src='/images/series-icon.svg'
-            width={27}
-            height={27}
+            width={24}
+            height={24}
             alt='series-icon'
             className='h-6'
           />
