@@ -1,59 +1,49 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { HomeIcon, SearchIcon, FilmIcon } from '@heroicons/react/solid';
 import { useSession, signIn, signOut } from 'next-auth/react';
-import { useRouter } from 'next/router';
 import Search from './Search';
 
 const Header = () => {
-  const router = useRouter();
   const { data: session } = useSession();
-
-  // if (session) {
-  //   return (
-  //     <>
-  //       Signed in as {session.user.email} <br />
-  //       <button onClick={() => signOut()}>Sign out</button>
-  //     </>
-  //   );
-  // }
-  // return (
-  //   <>
-  //     Not signed in <br />
-  //     <button onClick={() => signIn()}>Sign in</button>
-  //   </>
-  // );
 
   return (
     <div className='sticky bg-home bg-cover shadow-2xl top-0 z-50 flex h-16 items-center px-10 md:px-6'>
-      <Image
-        src='/logo.png'
-        alt='logo'
-        width={116}
-        height={23}
-        className='cursor-pointer'
-        onClick={() => router.push('/')}
-      />
+      {/* <Link href='/' passHref>
+        <Image
+          src='/logo.png'
+          alt='logo'
+          width={116}
+          height={23}
+          className='cursor-pointer'
+        />
+      </Link> */}
+
       <div className='hidden ml-10 md:flex items-center space-x-6'>
-        <a className='header-link group' onClick={() => router.push('/')}>
-          <HomeIcon className='h-6' />
-          <span className='span'>Home</span>
-        </a>
-
-        <a className='header-link group' onClick={() => router.push('/movies')}>
-          <FilmIcon className='h-6' />
-          <span className='span'>Movies</span>
-        </a>
-
-        <a className='header-link group' onClick={() => router.push('/shows')}>
-          <Image
-            src='/images/series-icon.svg'
-            width={24}
-            height={24}
-            alt='series-icon'
-            className='h-6'
-          />
-          <span className='span'>Series</span>
-        </a>
+        <Link href='/'>
+          <a className='header-link group'>
+            <HomeIcon className='h-6' />
+            <span className='span'>Home</span>
+          </a>
+        </Link>
+        <Link href='/movies'>
+          <a className='header-link group'>
+            <FilmIcon className='h-6' />
+            <span className='span'>Movies</span>
+          </a>
+        </Link>
+        <Link href='/shows'>
+          <a className='header-link group'>
+            <Image
+              src='/images/series-icon.svg'
+              width={24}
+              height={24}
+              alt='series-icon'
+              className='h-6'
+            />
+            <span className='span'>Series</span>
+          </a>
+        </Link>
 
         <a className='header-link group'>
           <SearchIcon className='h-6' />
