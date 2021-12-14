@@ -34,7 +34,7 @@ const Search = () => {
               ? 'Search for movies and tv series...'
               : 'Please enter something to search...'
           }
-          size={30}
+          size={28}
           className={
             !error
               ? 'bg-transparent outline-none font-semibold'

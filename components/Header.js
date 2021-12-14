@@ -1,11 +1,27 @@
 import Image from 'next/image';
 import { HomeIcon, SearchIcon, FilmIcon } from '@heroicons/react/solid';
-import { signIn } from 'next-auth/react';
+import { useSession, signIn, signOut } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import Search from './Search';
 
 const Header = () => {
   const router = useRouter();
+  const { data: session } = useSession();
+
+  // if (session) {
+  //   return (
+  //     <>
+  //       Signed in as {session.user.email} <br />
+  //       <button onClick={() => signOut()}>Sign out</button>
+  //     </>
+  //   );
+  // }
+  // return (
+  //   <>
+  //     Not signed in <br />
+  //     <button onClick={() => signIn()}>Sign in</button>
+  //   </>
+  // );
 
   return (
     <div className='sticky bg-home bg-cover shadow-2xl top-0 z-50 flex h-16 items-center px-10 md:px-6'>
@@ -44,12 +60,33 @@ const Header = () => {
           <Search />
         </a>
       </div>
-      <button
-        className='ml-auto uppercase border px-4 py-1.5 rounded font-medium tracking-wide hover:bg-white hover:text-black transition duration-200'
-        onClick={() => router.push('/auth/login')}
-      >
-        Login
-      </button>
+      {session ? (
+        <div className='flex md:text-sm items-center ml-auto gap-6'>
+          <div className='flex items-center justify-items-center gap-4'>
+            Hi, {session.user.name}{' '}
+            <Image
+              src={session.user.image}
+              alt='user-image'
+              width={40}
+              height={40}
+              className='rounded-full'
+            />
+          </div>
+          <button
+            className='ml-auto uppercase border px-4 py-1.5 rounded font-medium tracking-wide hover:bg-white hover:text-black transition duration-200'
+            onClick={() => signOut()}
+          >
+            Logout
+          </button>
+        </div>
+      ) : (
+        <button
+          className='ml-auto uppercase border px-4 py-1.5 rounded font-medium tracking-wide hover:bg-white hover:text-black transition duration-200'
+          onClick={() => signIn()}
+        >
+          Login
+        </button>
+      )}
     </div>
   );
 };
