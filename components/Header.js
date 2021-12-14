@@ -47,7 +47,7 @@ const Header = () => {
             <span className='span'>Series</span>
           </a>
         </Link>
-        <Link href='/results'>
+        <Link href='/search'>
           <a className='header-link group'>
             <SearchIcon className='h-6' />
             <Search />
