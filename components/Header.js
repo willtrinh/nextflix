@@ -1,3 +1,4 @@
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { HomeIcon, SearchIcon, FilmIcon } from '@heroicons/react/solid';
@@ -9,15 +10,17 @@ const Header = () => {
 
   return (
     <div className='sticky bg-home bg-cover shadow-2xl top-0 z-50 flex h-16 items-center px-10 md:px-6'>
-      {/* <Link href='/' passHref>
-        <Image
-          src='/logo.png'
-          alt='logo'
-          width={116}
-          height={23}
-          className='cursor-pointer'
-        />
-      </Link> */}
+      <Link href='/' passHref>
+        <a>
+          <Image
+            src='/logo.png'
+            alt='logo'
+            width={116}
+            height={23}
+            className='cursor-pointer'
+          />
+        </a>
+      </Link>
 
       <div className='hidden ml-10 md:flex items-center space-x-6'>
         <Link href='/'>
