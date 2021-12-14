@@ -12,7 +12,6 @@ import {
 import ReactPlayer from 'react-player/lazy';
 
 const MovieDetailPage = ({ result }) => {
-  console.log(result);
   const BASE_URL = 'https://image.tmdb.org/t/p/original';
   const [isHovering, setIsHovering] = useState(false);
   const [showPlayer, setShowPlayer] = useState(false);
