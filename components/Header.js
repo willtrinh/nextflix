@@ -47,11 +47,12 @@ const Header = () => {
             <span className='span'>Series</span>
           </a>
         </Link>
-
-        <a className='header-link group'>
-          <SearchIcon className='h-6' />
-          <Search />
-        </a>
+        <Link href='/results'>
+          <a className='header-link group'>
+            <SearchIcon className='h-6' />
+            <Search />
+          </a>
+        </Link>
       </div>
       {session ? (
         <div className='flex md:text-sm items-center ml-auto gap-6'>
