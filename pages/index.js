@@ -6,6 +6,7 @@ import Brands from '../components/Brands';
 import Movies from '../components/Movies';
 import Shows from '../components/Shows';
 import { getMoviesAndShows } from '../helpers/api-utils';
+import Footer from '../components/Footer';
 
 export default function Home({
   popularMovies,
@@ -32,6 +33,7 @@ export default function Home({
         <Movies results={topRatedMovies} title='Top Rated Movies' />
         <Shows results={topRatedShows} title='Top Rated TV Shows' />
       </main>
+      <Footer />
     </Fragment>
   );
 }
